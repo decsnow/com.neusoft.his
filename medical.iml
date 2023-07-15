@@ -22,5 +22,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="apache-tomcat-8.5" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.34" level="project" />
+    <orderEntry type="library" name="crypto-js" level="application" />
   </component>
 </module>

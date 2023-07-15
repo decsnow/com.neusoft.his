@@ -28,12 +28,13 @@ public class UserServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         String realname = request.getParameter("realname");
-        String password = request.getParameter("password");
+        //String password = request.getParameter("password");
+        String encryptedPassword = request.getParameter("encryptedPassword");
         String deptment_id = request.getParameter("deptment_id");
 
         if (action.equals("login")) {
             // 登录
-            if (mapper.isLogin(realname, password)) {
+            if (mapper.isLogin(realname, encryptedPassword)) {
                 // 登录成功
                 System.out.println("登录成功");
                 request.setAttribute("status", "success");
@@ -44,7 +45,7 @@ public class UserServlet extends HttpServlet {
             }
         } else if (action.equals("register")) {
             // 注册
-            if (mapper.isRegister(realname, password, deptment_id)) {
+            if (mapper.isRegister(realname, encryptedPassword, deptment_id)) {
                 // 注册成功
                 System.out.println("注册成功");
                 request.setAttribute("status", "success");
