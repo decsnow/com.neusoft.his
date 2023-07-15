@@ -1,11 +1,6 @@
 package com.ruan.servlet;
 
 import java.io.IOException;
-//import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ruan.dao.BaseDao;
 import com.ruan.mapper.EmployeeMapper;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private Connection conn;
-    private EmployeeMapper mapper = new EmployeeMapper();
+    private final EmployeeMapper mapper = new EmployeeMapper();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -31,6 +24,8 @@ public class UserServlet extends HttpServlet {
         //String password = request.getParameter("password");
         String encryptedPassword = request.getParameter("encryptedPassword");
         String deptment_id = request.getParameter("deptment_id");
+        String regist_level_id = request.getParameter("regist_level_id");
+        String scheduling_id = request.getParameter("scheduling_id");
 
         if (action.equals("login")) {
             // 登录
@@ -45,7 +40,7 @@ public class UserServlet extends HttpServlet {
             }
         } else if (action.equals("register")) {
             // 注册
-            if (mapper.isRegister(realname, encryptedPassword, deptment_id)) {
+            if (mapper.isRegister(realname, encryptedPassword, Integer.parseInt(deptment_id), Integer.parseInt(regist_level_id), Integer.parseInt(scheduling_id))) {
                 // 注册成功
                 System.out.println("注册成功");
                 request.setAttribute("status", "success");

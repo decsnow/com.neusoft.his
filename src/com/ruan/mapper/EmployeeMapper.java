@@ -39,7 +39,7 @@ public class EmployeeMapper extends BaseDao {
     }
 
     //注册用户
-    public boolean isRegister(String realname, String password, String deptment_id){
+    public boolean isRegister(String realname, String password, Integer deptment_id,Integer regist_level_id, Integer scheduling_id){
         try {
             // 检查用户名是否已存在
             if (isUsernameExists(realname, conn)) {
@@ -48,11 +48,13 @@ public class EmployeeMapper extends BaseDao {
             }
 
             // 执行插入操作
-            String sql = "INSERT INTO employee (realname, password, deptment_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO employee (realname, password, deptment_id,regist_level_id,scheduling_id )"+" VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, realname);
             stmt.setString(2, password);
-            stmt.setString(3, deptment_id);
+            stmt.setInt(3, deptment_id);
+            stmt.setInt(4, regist_level_id);
+            stmt.setInt(5, scheduling_id);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
