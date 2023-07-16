@@ -28,7 +28,8 @@ public class UserServlet extends HttpServlet {
         String regist_level_id = request.getParameter("regist_level_id");
         String scheduling_id = request.getParameter("scheduling_id");
 
-        if (action.equals("login")) {
+        switch (action) {
+            case "login":
             // 登录
             Employee employeeSession = mapper.isLogin(realname, encryptedPassword);
             if (employeeSession != null) {
@@ -43,7 +44,8 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("status", "fail");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-        } else if (action.equals("register")) {
+            break;
+            case "register":
             // 注册
             if (mapper.isRegister(realname, encryptedPassword, Integer.parseInt(deptment_id), Integer.parseInt(regist_level_id), Integer.parseInt(scheduling_id))) {
                 // 注册成功
@@ -56,7 +58,18 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("status", "fail");
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
+            break;
+            case "listAll":
+                System.out.println(mapper.listAll());
+            request.setAttribute("userlist", mapper.listAll());
+            request.getRequestDispatcher("userList.jsp").forward(request, response);
+            break;
         }
 
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+            doPost(request,response);
     }
 }

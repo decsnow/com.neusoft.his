@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 public class EmployeeMapper extends BaseDao {
     private final Connection conn; // 成员变量用于保存数据库连接
@@ -71,7 +73,36 @@ public class EmployeeMapper extends BaseDao {
             return false;
         }
     }
-    
+
+    //查询所有用户
+    public List<Employee> listAll() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM employee";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            Employee[] employees = new Employee[100];
+            int index = 0;
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String realname = rs.getString("realname");
+                String password = rs.getString("password");
+                int deptment_id = rs.getInt("deptment_id");
+                int regist_level_id = rs.getInt("regist_level_id");
+                int scheduling_id = rs.getInt("scheduling_id");
+                employees[index++] = new Employee(id, realname, password, deptment_id, regist_level_id, scheduling_id);
+            }
+            return Arrays.asList(employees);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            closeResources(rs, stmt, null);
+        }
+    }
     private boolean isUsernameExists(String realname, Connection conn) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
