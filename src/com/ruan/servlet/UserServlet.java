@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruan.bean.Employee;
 import com.ruan.mapper.EmployeeMapper;
 
 @WebServlet("/user")
@@ -29,14 +30,18 @@ public class UserServlet extends HttpServlet {
 
         if (action.equals("login")) {
             // 登录
-            if (mapper.isLogin(realname, encryptedPassword)) {
+            Employee employeeSession = mapper.isLogin(realname, encryptedPassword);
+            if (employeeSession != null) {
                 // 登录成功
-                System.out.println("登录成功");
-                request.setAttribute("status", "success");
+                //设置session，保存登录状态，设置session的有效期为30分钟
+                request.getSession().setAttribute("employee", employeeSession);
+                // 跳转到main.jsp页面
+                response.sendRedirect("main.jsp");
             } else {
                 // 登录失败
                 System.out.println("登录失败");
                 request.setAttribute("status", "fail");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else if (action.equals("register")) {
             // 注册
@@ -44,13 +49,14 @@ public class UserServlet extends HttpServlet {
                 // 注册成功
                 System.out.println("注册成功");
                 request.setAttribute("status", "success");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 // 注册失败
                 System.out.println("注册失败");
                 request.setAttribute("status", "fail");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
         }
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

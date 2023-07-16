@@ -1,5 +1,6 @@
 package com.ruan.mapper;
 
+import com.ruan.bean.Employee;
 import com.ruan.dao.BaseDao;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class EmployeeMapper extends BaseDao {
     }
 
     // 判断是否登录成功
-    public boolean isLogin(String realname, String password) {
+    public Employee isLogin(String realname, String password) {
         //System.out.println("conn: " + conn);
         // 定义sql语句
         String sql = "SELECT * FROM employee WHERE realname = ? AND password = ?";
@@ -30,12 +31,19 @@ public class EmployeeMapper extends BaseDao {
             ResultSet rs = ps.executeQuery();
             // 判断是否有数据
             if (rs.next()) {
-                return true;
+                // 获取数据
+                int id = rs.getInt("id");
+                int deptment_id = rs.getInt("deptment_id");
+                int regist_level_id = rs.getInt("regist_level_id");
+                int scheduling_id = rs.getInt("scheduling_id");
+                // 封装成对象
+                // 返回对象
+                return new Employee(id, realname, password, deptment_id, regist_level_id, scheduling_id);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     //注册用户

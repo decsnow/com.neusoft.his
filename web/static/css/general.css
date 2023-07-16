@@ -80,3 +80,32 @@ input[type="submit"]:hover {
     color: #333333;
     font-weight: bold;
 }
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-wrapper::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 24px 6px 10px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+}
