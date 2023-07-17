@@ -82,6 +82,7 @@ public class EmployeeMapper extends BaseDao {
                     "left join department d on employee.deptment_id = d.id "+
                     "left join regist_level rl on employee.regist_level_id = rl.id"+
                     " left join scheduling s on employee.scheduling_id = s.id";
+            System.out.println((List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true));
         //将最终所有的感思信总返回
             return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
     }

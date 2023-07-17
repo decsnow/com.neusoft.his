@@ -46,9 +46,9 @@
         <tr>
             <td>${user.id}</td>
             <td>${user.realname}</td>
-            <td>${user.deptmentId}</td>
-            <td>${user.registLevelId}</td>
-            <td>${user.schedulingId}</td>
+            <td>${user.dept_name}</td>
+            <td>${user.regist_name}</td>
+            <td>${user.rule_name}</td>
         </tr>
     </c:forEach>
 </table>

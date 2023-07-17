@@ -4,17 +4,17 @@ import com.ruan.bean.Employee;
 
 public class EmployeeDto extends Employee {
     private String dept_name;
-    private String regist_level_name;
-    private String scheduling_name;
+    private String regist_name;
+    private String rule_name;
 
 
     public EmployeeDto() {
     }
 
-    public EmployeeDto(String dept_name, String regist_level_name, String scheduling_name) {
+    public EmployeeDto(String dept_name, String regist_name, String rule_name) {
         this.dept_name = dept_name;
-        this.regist_level_name = regist_level_name;
-        this.scheduling_name = scheduling_name;
+        this.regist_name = regist_name;
+        this.rule_name = rule_name;
     }
 
     /**
@@ -35,37 +35,37 @@ public class EmployeeDto extends Employee {
 
     /**
      * 获取
-     * @return regist_level_name
+     * @return regist_name
      */
-    public String getRegist_level_name() {
-        return regist_level_name;
+    public String getregist_name() {
+        return regist_name;
     }
 
     /**
      * 设置
-     * @param regist_level_name
+     * @param regist_name
      */
-    public void setRegist_level_name(String regist_level_name) {
-        this.regist_level_name = regist_level_name;
+    public void setregist_name(String regist_name) {
+        this.regist_name = regist_name;
     }
 
     /**
      * 获取
-     * @return scheduling_name
+     * @return rule_name
      */
-    public String getScheduling_name() {
-        return scheduling_name;
+    public String getrule_name() {
+        return rule_name;
     }
 
     /**
      * 设置
-     * @param scheduling_name
+     * @param rule_name
      */
-    public void setScheduling_name(String scheduling_name) {
-        this.scheduling_name = scheduling_name;
+    public void setrule_name(String rule_name) {
+        this.rule_name = rule_name;
     }
 
     public String toString() {
-        return "EmployeeDto{dept_name = " + dept_name + ", regist_level_name = " + regist_level_name + ", scheduling_name = " + scheduling_name + "}";
+        return "EmployeeDto{dept_name = " + dept_name + ", regist_name = " + regist_name + ", rule_name = " + rule_name + "}";
     }
 }
