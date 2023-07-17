@@ -33,7 +33,7 @@ public class UserServlet extends HttpServlet {
             case "login":
             // 登录
             EmployeeDto employeeSession = mapper.isLogin(realname, encryptedPassword);
-            if (employeeSession != null) {
+            if (employeeSession.getRealname() != null) {
                 // 登录成功
                 //设置session，保存登录状态，设置session的有效期为30分钟
                 request.getSession().setAttribute("employeeSession", employeeSession);
@@ -64,6 +64,12 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("userlist", mapper.listAll());
             request.getRequestDispatcher("userList.jsp").forward(request, response);
             break;
+            case "listUser":
+            String id2 = request.getParameter("id");
+            request.setAttribute("user", mapper.listEmployee(id2));
+            System.out.println(mapper.listEmployee(id2));
+            request.getRequestDispatcher("userUpdate.jsp").forward(request, response);
+            break;
             case "logout":
             request.getSession().removeAttribute("employeeSession");
             response.sendRedirect("index.jsp");
@@ -79,6 +85,33 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("userlist", mapper.listAll());
                 request.getRequestDispatcher("userList.jsp").forward(request, response);
             }
+            break;
+            case "updateUser":
+            String id1 = request.getParameter("id");
+            String realname1 = request.getParameter("realname");
+            String password1 = request.getParameter("password");
+            String deptment_id1 = request.getParameter("deptment_id");
+            String regist_level_id1 = request.getParameter("regist_level_id");
+            String scheduling_id1 = request.getParameter("scheduling_id");
+            System.out.println(id1);
+            System.out.println(realname1);
+            System.out.println(password1);
+            System.out.println(deptment_id1);
+            System.out.println(regist_level_id1);
+            System.out.println(scheduling_id1);
+            Employee updateEmployee= new Employee(Integer.parseInt(id1), realname1, password1, Integer.parseInt(deptment_id1), Integer.parseInt(regist_level_id1), Integer.parseInt(scheduling_id1));
+            if (mapper.updateEmployee(updateEmployee)){
+                System.out.println("更新成功");
+                request.setAttribute("userlist", mapper.listAll());
+                request.getRequestDispatcher("userList.jsp").forward(request, response);
+            } else {
+                System.out.println("更新失败");
+                request.setAttribute("userlist", mapper.listAll());
+                request.getRequestDispatcher("userList.jsp").forward(request, response);
+            }
+            break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + action);
         }
 
     }

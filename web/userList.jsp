@@ -99,7 +99,7 @@
             <td>${user.regist_name}</td>
             <td>${user.rule_name}</td>
             <td>
-                <button class="btn btn-primary" onclick=popBox()>编辑</button>
+                <button class="btn btn-primary" onclick=updateUser(${user.id})>编辑</button>
                 <button class="btn btn-danger" onclick="delUser(${user.id})">删除</button>
             </td>
         </tr>
@@ -116,6 +116,9 @@
         if (confirm("确定要删除吗？")){
             location.href = "user?action=delUser&id=" + id;
         }
+    }
+    function updateUser(id) {
+        location.href = "user?action=listUser&id=" + id
     }
     /*点击弹出按钮*/
     function popBox() {

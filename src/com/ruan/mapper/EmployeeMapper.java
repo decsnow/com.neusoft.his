@@ -70,6 +70,35 @@ public class EmployeeMapper extends BaseDao {
             return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
     }
 
+    public Employee listEmployee(String id){
+        //编写sql语句
+        String sql = "SELECT * FROM employee where id = ?";
+        try {
+            // 获取PreparedStatement对象
+            assert conn != null;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            // 设置参数
+            ps.setString(1, id);
+            // 执行查询
+            ResultSet rs = ps.executeQuery();
+            // 判断是否有数据
+            if (rs.next()) {
+                // 获取数据
+                String realname = rs.getString("realname");
+                String password = rs.getString("password");
+                int deptment_id = rs.getInt("deptment_id");
+                int regist_level_id = rs.getInt("regist_level_id");
+                int scheduling_id = rs.getInt("scheduling_id");
+                // 封装成对象
+                // 返回对象
+                return new Employee(Integer.parseInt(id), realname, password, deptment_id, regist_level_id, scheduling_id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
     public boolean deleteEmployee(String id){
         //默认删除失败
         boolean res = false;
@@ -83,6 +112,28 @@ public class EmployeeMapper extends BaseDao {
         }
         return res;
     }
+
+    //更新用户信息
+    public boolean updateEmployee(Employee employee){
+        //默认更新失败
+        boolean res = false;
+        String sql = "update employee set realname = ?,password = ?,deptment_id = ?,regist_level_id = ?,scheduling_id = ? where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,employee.getRealname());
+            ps.setString(2,employee.getPassword());
+            ps.setInt(3,employee.getDeptmentId());
+            ps.setInt(4,employee.getRegistLevelId());
+            ps.setInt(5,employee.getSchedulingId());
+            ps.setInt(6,employee.getId());
+            //若影响行数 > 0 则更新成功
+            res = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
+    // 判断用户名是否已存在
     private boolean isUsernameExists(String realname, Connection conn) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
