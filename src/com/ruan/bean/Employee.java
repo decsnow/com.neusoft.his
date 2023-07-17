@@ -42,27 +42,27 @@ this.schedulingId = schedulingId;
         return schedulingId;
     }
 
-    public void setId() {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setRealname() {
+    public void setRealname(String realname) {
         this.realname = realname;
     }
 
-    public void setPassword() {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setDeptmentId() {
+    public void setDeptmentId(Integer deptmentId) {
         this.deptmentId = deptmentId;
     }
 
-    public void setRegistLevelId() {
+    public void setRegistLevelId(Integer registLevelId) {
         this.registLevelId = registLevelId;
     }
 
-    public void setSchedulingId() {
+    public void setSchedulingId(Integer schedulingId) {
         this.schedulingId = schedulingId;
     }
 
