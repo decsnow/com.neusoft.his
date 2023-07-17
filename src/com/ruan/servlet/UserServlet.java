@@ -67,6 +67,18 @@ public class UserServlet extends HttpServlet {
             case "logout":
             request.getSession().removeAttribute("employeeSession");
             response.sendRedirect("index.jsp");
+            break;
+            case "delUser":
+            String id = request.getParameter("id");
+            if (mapper.deleteEmployee(id)) {
+                System.out.println("删除成功");
+                request.setAttribute("userlist", mapper.listAll());
+                request.getRequestDispatcher("userList.jsp").forward(request, response);
+            } else {
+                System.out.println("删除失败");
+                request.setAttribute("userlist", mapper.listAll());
+                request.getRequestDispatcher("userList.jsp").forward(request, response);
+            }
         }
 
     }

@@ -31,6 +31,10 @@
             color: white;
         }
     </style>
+    <link href="static/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="static/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
 <body>
 医生信息
@@ -41,6 +45,7 @@
         <td>科室</td>
         <td>职称</td>
         <td>排班</td>
+        <td>操作</td>
     </tr>
     <c:forEach items="${userlist}" var="user">
         <tr>
@@ -49,10 +54,19 @@
             <td>${user.dept_name}</td>
             <td>${user.regist_name}</td>
             <td>${user.rule_name}</td>
+            <td>
+                <button class="btn btn-danger" onclick="delUser(${user.id})">删除</button>
+            </td>
         </tr>
     </c:forEach>
 </table>
-
+<script>
+    function delUser(id) {
+        if (confirm("确定要删除吗？")){
+            location.href = "user?action=delUser&id=" + id;
+        }
+    }
+</script>
 
 </body>
 </html>

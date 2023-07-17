@@ -69,6 +69,20 @@ public class EmployeeMapper extends BaseDao {
         //将最终所有的感思信总返回
             return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
     }
+
+    public boolean deleteEmployee(String id){
+        //默认删除失败
+        boolean res = false;
+        String sql = "delete from employee where id = "+id;
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            //若影响行数 > 0 则删除成功
+            res = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
     private boolean isUsernameExists(String realname, Connection conn) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
