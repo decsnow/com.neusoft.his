@@ -79,6 +79,7 @@
             <label for="deptment_id">科室：</label>
             <div class="select-wrapper">
             <select id="deptment_id" name="deptment_id">
+                <option value="none" selected disabled hidden>请选择科室</option>
                 <% while (true) {
                     assert rs != null;
                     try {
@@ -94,6 +95,7 @@
             <label for="regist_level_id">职称：</label>
             <div class="select-wrapper">
             <select id="regist_level_id" name="regist_level_id">
+                <option value="none" selected disabled hidden>请选择职称</option>
                 <option value="1">专家号</option>
                 <option value="2">普通号</option>
                 <option value="3">主任医生号</option>
@@ -103,6 +105,7 @@
             <label for="scheduling_id">排班：</label>
             <div class="select-wrapper">
             <select id="scheduling_id" name="scheduling_id">
+                <option value="none" selected disabled hidden>请选择排班</option>
                 <option value="1">星期一三五上午</option>
                 <option value="2">星期一三五下午</option>
                 <option value="3">星期二四六上午</option>
