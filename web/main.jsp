@@ -29,7 +29,12 @@
     <link href="static/css/animate.min.css" rel="stylesheet">
     <link href="static/css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
-
+<%
+    //若没有登录，跳转到登录页面
+    if (session.getAttribute("employeeSession") == null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->
