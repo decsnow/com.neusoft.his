@@ -60,7 +60,6 @@ public class UserServlet extends HttpServlet {
             }
             break;
             case "listAll":
-                System.out.println(mapper.listAll());
             request.setAttribute("userlist", mapper.listAll());
             request.getRequestDispatcher("userList.jsp").forward(request, response);
             break;

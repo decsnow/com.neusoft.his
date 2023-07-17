@@ -1,13 +1,14 @@
 package com.ruan.mapper;
 
 import com.ruan.bean.Employee;
+import com.ruan.bean.dto.EmployeeDto;
 import com.ruan.dao.BaseDao;
+import com.ruan.util.CRUDUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeMapper extends BaseDao {
@@ -75,33 +76,14 @@ public class EmployeeMapper extends BaseDao {
     }
 
     //查询所有用户
-    public List<Employee> listAll() {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            String sql = "SELECT * FROM employee";
-            stmt = conn.prepareStatement(sql);
-            rs = stmt.executeQuery();
-
-            Employee[] employees = new Employee[100];
-            int index = 0;
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String realname = rs.getString("realname");
-                String password = rs.getString("password");
-                int deptment_id = rs.getInt("deptment_id");
-                int regist_level_id = rs.getInt("regist_level_id");
-                int scheduling_id = rs.getInt("scheduling_id");
-                employees[index++] = new Employee(id, realname, password, deptment_id, regist_level_id, scheduling_id);
-            }
-            return Arrays.asList(employees);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            closeResources(rs, stmt, null);
-        }
+    public List<EmployeeDto> listAll(){
+            //编写sql语句
+            String sql = "SELECT * FROM employee "+
+                    "left join department d on employee.deptment_id = d.id "+
+                    "left join regist_level rl on employee.regist_level_id = rl.id"+
+                    " left join scheduling s on employee.scheduling_id = s.id";
+        //将最终所有的感思信总返回
+            return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
     }
     private boolean isUsernameExists(String realname, Connection conn) throws SQLException {
         PreparedStatement stmt = null;
