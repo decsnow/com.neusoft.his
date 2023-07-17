@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeMapper extends BaseDao {
@@ -19,34 +20,16 @@ public class EmployeeMapper extends BaseDao {
     }
 
     // 判断是否登录成功
-    public Employee isLogin(String realname, String password) {
-        //System.out.println("conn: " + conn);
-        // 定义sql语句
-        String sql = "SELECT * FROM employee WHERE realname = ? AND password = ?";
-        try {
-            // 获取PreparedStatement对象
-            assert conn != null;
-            PreparedStatement ps = conn.prepareStatement(sql);
-            // 设置参数
-            ps.setString(1, realname);
-            ps.setString(2, password);
-            // 执行查询
-            ResultSet rs = ps.executeQuery();
-            // 判断是否有数据
-            if (rs.next()) {
-                // 获取数据
-                int id = rs.getInt("id");
-                int deptment_id = rs.getInt("deptment_id");
-                int regist_level_id = rs.getInt("regist_level_id");
-                int scheduling_id = rs.getInt("scheduling_id");
-                // 封装成对象
-                // 返回对象
-                return new Employee(id, realname, password, deptment_id, regist_level_id, scheduling_id);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public EmployeeDto isLogin(String realname, String password) {
+        String sql = "SELECT * FROM employee "+
+                "left join department d on employee.deptment_id = d.id "+
+                "left join regist_level rl on employee.regist_level_id = rl.id"+
+                " left join scheduling s on employee.scheduling_id = s.id"+
+                " where realname = ? and password = ?";
+        List<Object> list = new ArrayList<>();
+        list.add(realname);
+        list.add(password);
+        return (EmployeeDto) CRUDUtil.CRUD(sql, EmployeeDto.class, list, true, false);
     }
 
     //注册用户
@@ -82,7 +65,7 @@ public class EmployeeMapper extends BaseDao {
                     "left join department d on employee.deptment_id = d.id "+
                     "left join regist_level rl on employee.regist_level_id = rl.id"+
                     " left join scheduling s on employee.scheduling_id = s.id";
-            System.out.println((List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true));
+            //System.out.println((List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true));
         //将最终所有的感思信总返回
             return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
     }

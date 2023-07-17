@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ruan.bean.Employee;
+import com.ruan.bean.dto.EmployeeDto;
 import com.ruan.mapper.EmployeeMapper;
 
 @WebServlet("/user")
@@ -31,11 +32,11 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "login":
             // 登录
-            Employee employeeSession = mapper.isLogin(realname, encryptedPassword);
+            EmployeeDto employeeSession = mapper.isLogin(realname, encryptedPassword);
             if (employeeSession != null) {
                 // 登录成功
                 //设置session，保存登录状态，设置session的有效期为30分钟
-                request.getSession().setAttribute("employee", employeeSession);
+                request.getSession().setAttribute("employeeSession", employeeSession);
                 // 跳转到main.jsp页面
                 response.sendRedirect("main.jsp");
             } else {
@@ -63,6 +64,9 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("userlist", mapper.listAll());
             request.getRequestDispatcher("userList.jsp").forward(request, response);
             break;
+            case "logout":
+            request.getSession().removeAttribute("employeeSession");
+            response.sendRedirect("index.jsp");
         }
 
     }

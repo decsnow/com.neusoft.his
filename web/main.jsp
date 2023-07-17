@@ -43,8 +43,8 @@
                         <span><img alt="image" class="img-circle" src="static/img/profile_small.jpg" /></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">${employee.realname}</strong></span>
-                                <span class="text-muted text-xs block">超管<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold">${employeeSession.realname}</strong></span>
+                                <span class="text-muted text-xs block">${employeeSession.dept_name}<b class="caret"></b></span>
                                 </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -57,7 +57,7 @@
                             <li><a class="J_menuItem" href="mailbox.html">信箱</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="index.jsp">安全退出</a>
+                            <li><a href="user?action=logout">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -536,7 +536,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="index.jsp" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="user?action=logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v2.html?v=4.0" frameborder="0" data-id="index_v2.html" seamless></iframe>
