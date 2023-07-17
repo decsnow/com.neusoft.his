@@ -27,8 +27,52 @@
         }
 
         tr:hover {
-            background-color: #4CAF50;
+            background-color: #b0dbff;
             color: white;
+        }
+
+        /*背景层*/
+        #popLayer {
+            display: none;
+            background-color: #B3B3B3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+        }
+
+        /*弹出层*/
+        #popBox {
+            display: none;
+            background-color: #ffffff;
+            z-index: 11;
+            width: 800px;
+            height: 600px;
+            position:fixed;
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            margin:auto;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            border-radius: 8px;
+        }
+
+        #popBox .close{
+            text-align: right;
+            margin-right: 5px;
+            background-color: #F8F8F8;
+        }
+
+        /*关闭按钮*/
+        #popBox .close a {
+            text-decoration: none;
+            color: #2D2C3B;
         }
     </style>
     <link href="static/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
@@ -49,22 +93,44 @@
     </tr>
     <c:forEach items="${userlist}" var="user">
         <tr>
-            <td>${user.id}</td>
+            <td><br>${user.id}<br><br></td>
             <td>${user.realname}</td>
             <td>${user.dept_name}</td>
             <td>${user.regist_name}</td>
             <td>${user.rule_name}</td>
             <td>
+                <button class="btn btn-primary" onclick=popBox()>编辑</button>
                 <button class="btn btn-danger" onclick="delUser(${user.id})">删除</button>
             </td>
         </tr>
     </c:forEach>
 </table>
+<div id="popBox">
+    <div class="close">
+        <button  class="btn-circle" onclick="closeBox()">关闭</button>
+    </div>
+    <div class="content">我是弹出层</div>
+</div>
 <script>
     function delUser(id) {
         if (confirm("确定要删除吗？")){
             location.href = "user?action=delUser&id=" + id;
         }
+    }
+    /*点击弹出按钮*/
+    function popBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    };
+
+    /*点击关闭按钮*/
+    function closeBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
     }
 </script>
 
