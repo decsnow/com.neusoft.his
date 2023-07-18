@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: chenggangma
@@ -8,24 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.ruan.dao.BaseDao" %>
-<%
-    Connection conn;
-    Statement stmt;
-    ResultSet rs = null;
-
-    try {
-        // 建立数据库连接
-        conn = BaseDao.getConnection();
-
-        // 执行SQL查询
-        assert conn != null;
-        stmt = conn.createStatement();
-        String query = "SELECT id, dept_name FROM department";
-        rs = stmt.executeQuery(query);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-%>
 
 <html>
 <head>
@@ -83,15 +66,9 @@
     <div class="select-wrapper">
         <select id="deptment_id" name="deptment_id">
             <option value="none" selected disabled hidden>请选择科室</option>
-            <% while (true) {
-                assert rs != null;
-                try {
-                    if (!rs.next()) break;
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } %>
-            <option value="<%= rs.getString("id") %>"><%= rs.getString("dept_name") %></option>
-            <% } %>
+            <c:forEach items="${deptlist}" var="dept">
+                <option value="${dept.id}">${dept.dept_name}</option>
+            </c:forEach>
         </select> <br>
     </div>
     <br>

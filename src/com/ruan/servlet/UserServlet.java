@@ -48,6 +48,10 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
             break;
+            case "registerEntry":
+                request.setAttribute("deptlist", departmentMapper.selectAllDept());
+                System.out.println(departmentMapper.selectAllDept());
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
             case "register":
             // 注册
             if (mapper.isRegister(realname, encryptedPassword, Integer.parseInt(deptment_id), Integer.parseInt(regist_level_id), Integer.parseInt(scheduling_id))) {
@@ -68,7 +72,7 @@ public class UserServlet extends HttpServlet {
             case "listUser":
             String id2 = request.getParameter("id");
             request.setAttribute("user", mapper.listEmployee(id2));
-            System.out.println(mapper.listEmployee(id2));
+            request.setAttribute("deptlist", departmentMapper.selectAllDept());
             request.getRequestDispatcher("userUpdate.jsp").forward(request, response);
             break;
             case "logout":
