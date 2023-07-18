@@ -139,7 +139,7 @@
                             <a class="J_menuItem" href="user?action=listAll">医生管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                            <a class="J_menuItem" href="deptList.html">科室管理</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="graph_morris.html">Morris.js</a>

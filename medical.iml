@@ -25,5 +25,6 @@
     <orderEntry type="library" name="crypto-js" level="application" />
     <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.2.3" level="project" />
   </component>
 </module>

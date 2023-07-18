@@ -50,7 +50,7 @@ public class UserServlet extends HttpServlet {
             break;
             case "registerEntry":
                 request.setAttribute("deptlist", departmentMapper.selectAllDept());
-                System.out.println(departmentMapper.selectAllDept());
+                //System.out.println(departmentMapper.selectAllDept());
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             case "register":
             // 注册

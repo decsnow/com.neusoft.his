@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <link href="static/css/list.css" rel="stylesheet">
+</head>
+<body>
+<table style="margin: 20px">
+    <thead>
+    <tr>
+        <td>编号</td>
+        <td>代码</td>
+        <td>科室</td>
+        <td>分类</td>
+    </tr>
+    </thead>
+    <tbody id="dataList">
+
+    </tbody>
+</table>
+<script>
+    //页面加载的时候执行
+    $(function (){
+        $.ajax({
+            url:"/medical_war_exploded/department?action=listDept",
+            type:"post",
+            success:function (data){
+                //拿到的是json字符串，要转换成json对象
+                let dataList = JSON.parse(data);
+                console.log(dataList);
+                let dataStr = "";
+                for (let i = 0; i < dataList.length; i++) {
+                    dataStr += "<tr><td>"+dataList[i].id + "</td>" +
+                    "<td>" + dataList[i].dept_code + "</td>" +
+                    "<td>" + dataList[i].dept_name + "</td>";
+                    if(dataList[i].dept_type!=null && dataList[i].dept_type.length>0){
+                        dataStr +="<td>"+dataList[i].dept_type +"</td></tr>";
+                    }else{
+                        dataStr +="<td>---</td></tr>";
+                    }
+                }
+                $("#dataList").html(dataStr);
+            }
+        })
+    })
+</script>
+</body>
+</html>
