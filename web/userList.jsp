@@ -82,7 +82,24 @@
 </head>
 <body>
 医生信息
-<table>
+<form class="form-inline" action="user?action=conditionQuery" method="post" accept-charset="UTF-8">
+    <div class="form-group">
+        <label for="exampleInputName2">姓名</label>
+        <input type="text" class="form-control" name="realname" id="exampleInputName2" placeholder="请输入医生姓名">
+    </div>
+    <div class="form-group">
+        <label>
+            <select class="form-control" name="deptment_id">
+                <option value="0">科室</option>
+            <c:forEach items="${deptlist}" var="dept">
+                <option value="${dept.id}">${dept.dept_name}</option>
+            </c:forEach>
+            </select>
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">搜索</button>
+</form>
+<table style="margin: 20px">
     <tr>
         <td>编号</td>
         <td>姓名</td>

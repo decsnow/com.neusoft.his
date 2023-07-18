@@ -133,6 +133,25 @@ public class EmployeeMapper extends BaseDao {
         }
         return res;
     }
+
+    //条件查询
+    public List<EmployeeDto> conditionQuery(String realname, String deptId){
+        String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id," +
+                "e.scheduling_id, d.dept_name, r.regist_name, s.rule_name" +
+                " from employee e LEFT JOIN department d on" +
+                " e.deptment_id = d.id LEFT JOIN regist_level r on" +
+                " e.regist_level_id = r.id LEFT JOIN scheduling s ON" +
+                " e.scheduling_id = s.id where 1=1";
+        //当账号有信息时才添加查询条件
+        if (realname!=null && realname.length()>0){
+            sql +=" and e.realname like '%"+realname+"%'";
+        }
+            if((!"0".equals(deptId)) && deptId!=null && deptId.length()>0){
+                sql +=" and e.deptment_id=" + deptId;
+            }
+            sql += " ORDER BY e.id";
+            return (List<EmployeeDto>) CRUDUtil.CRUD(sql, EmployeeDto.class, null, true, true);
+    }
     // 判断用户名是否已存在
     private boolean isUsernameExists(String realname, Connection conn) throws SQLException {
         PreparedStatement stmt = null;

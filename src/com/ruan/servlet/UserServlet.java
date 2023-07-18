@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ruan.bean.Employee;
 import com.ruan.bean.dto.EmployeeDto;
+import com.ruan.mapper.DepartmentMapper;
 import com.ruan.mapper.EmployeeMapper;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final EmployeeMapper mapper = new EmployeeMapper();
+    private EmployeeMapper mapper = new EmployeeMapper();
+    private DepartmentMapper departmentMapper = new DepartmentMapper();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -61,8 +63,7 @@ public class UserServlet extends HttpServlet {
             }
             break;
             case "listAll":
-            request.setAttribute("userlist", mapper.listAll());
-            request.getRequestDispatcher("userList.jsp").forward(request, response);
+            queryListMain(request, response);
             break;
             case "listUser":
             String id2 = request.getParameter("id");
@@ -110,6 +111,12 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("userList.jsp").forward(request, response);
             }
             break;
+            case "conditionQuery":// 条件查询
+            String realname2 = request.getParameter("realname");
+            String deptment_id2 = request.getParameter("deptment_id");
+            request.setAttribute("userlist", mapper.conditionQuery(realname2, deptment_id2));
+            request.setAttribute("deptlist", departmentMapper.selectAllDept());
+            request.getRequestDispatcher("userList.jsp").forward(request, response);
             default:
                 throw new IllegalStateException("Unexpected value: " + action);
         }
@@ -119,5 +126,12 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
             doPost(request,response);
+    }
+
+    //拉取所有用户和部门信息
+    public void queryListMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("userlist", mapper.listAll());
+        request.setAttribute("deptlist", departmentMapper.selectAllDept());
+        request.getRequestDispatcher("userList.jsp").forward(request, response);
     }
 }
