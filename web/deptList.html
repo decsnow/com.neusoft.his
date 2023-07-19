@@ -5,6 +5,11 @@
     <title>Title</title>
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <link href="static/css/list.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="static/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <script src="static/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form class="form-inline" accept-charset="UTF-8" onsubmit="return false">
@@ -21,6 +26,7 @@
         <td>代码</td>
         <td>科室</td>
         <td>分类</td>
+        <td>操作</td>
     </tr>
     </thead>
     <tbody id="dataList">
@@ -41,16 +47,34 @@
             success:function (data){
                 //拿到的是json字符串，要转换成json对象
                 let dataList = JSON.parse(data);
-                console.log(dataList);
                 //jquery模版语法
                 let dataStr = ``;
                 for (let i = 0; i < dataList.length; i++) {
-                    dataStr += `<tr><td>${dataList[i].id}</td>
+                    dataStr += `<tr><td><br>${dataList[i].id}<br><br></td>
                     <td>${dataList[i].dept_code}</td>
                     <td>${dataList[i].dept_name}</td>
-                    <td>${dataList[i].dept_type!=null && dataList[i].dept_type.length>0?dataList[i].dept_type:'---'}</td></tr>`;
+                    <td>${dataList[i].dept_type!=null && dataList[i].dept_type.length>0?dataList[i].dept_type:'---'}</td>
+                    <td><button class="btn btn-danger" onclick="delDept(${dataList[i].id})">删除</button></td></tr>`;
                 }
                 $("#dataList").html(dataStr);
+            }
+        })
+    }
+    function delDept(id){
+        if (!confirm("确定要删除吗？")){
+            return;
+        }
+        $.ajax({
+            url:"/medical_war_exploded/department",
+            type:"post",
+            data:{"action":"delDept","deptId":id},
+            success:function (data){
+                if (data!=="0"){
+                    alert("删除成功");
+                    loadList();
+                }else {
+                    alert("删除失败");
+                }
             }
         })
     }

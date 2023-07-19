@@ -33,6 +33,13 @@ public class DepartmentServlet extends HttpServlet {
             //符json数据返回
             resp.getWriter().print(json);
         break;
+        case "delDept":
+            // 删除科室
+            String deptId = req.getParameter("deptId");
+            boolean res = mapper.delDept(deptId);
+            String json1=objectMapper.writeValueAsString(res);
+            resp.getWriter().print(json1);
+            break;
             default:
                 throw new IllegalStateException("Unexpected value: " + action);
         }
