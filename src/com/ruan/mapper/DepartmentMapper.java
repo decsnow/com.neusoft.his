@@ -63,6 +63,24 @@ public List<Department> selectAllDept(String deptName){
         }
         return res;
     }
+
+    public boolean updateDept(String deptId,String deptName,String deptType){
+        //默认修改失败
+        boolean res = false;
+        String sql = "update department set dept_code = ?,dept_name = ?,dept_type = ? where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,convertStringToUpperCase(deptName));
+            ps.setString(2,deptName);
+            ps.setString(3,deptType);
+            ps.setString(4,deptId);
+            //若影响行数 > 0 则修改成功
+            res = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
     private boolean isDeptExists(String deptName, Connection conn) throws SQLException {
         PreparedStatement stmt = null;
         ResultSet rs = null;

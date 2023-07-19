@@ -48,6 +48,15 @@ public class DepartmentServlet extends HttpServlet {
             String json2=objectMapper.writeValueAsString(res1);
             resp.getWriter().print(json2);
             break;
+        case "updateDept":
+            // 修改科室
+            String deptId1 = req.getParameter("deptId");
+            String deptName2 = req.getParameter("deptName");
+            String deptType1 = req.getParameter("deptType");
+            boolean res2 = mapper.updateDept(deptId1,deptName2,deptType1);
+            String json3=objectMapper.writeValueAsString(res2);
+            resp.getWriter().print(json3);
+            break;
             default:
                 throw new IllegalStateException("Unexpected value: " + action);
         }
