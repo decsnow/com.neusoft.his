@@ -42,16 +42,13 @@
                 //拿到的是json字符串，要转换成json对象
                 let dataList = JSON.parse(data);
                 console.log(dataList);
-                let dataStr = "";
+                //jquery模版语法
+                let dataStr = ``;
                 for (let i = 0; i < dataList.length; i++) {
-                    dataStr += "<tr><td>"+dataList[i].id + "</td>" +
-                    "<td>" + dataList[i].dept_code + "</td>" +
-                    "<td>" + dataList[i].dept_name + "</td>";
-                    if(dataList[i].dept_type!=null && dataList[i].dept_type.length>0){
-                        dataStr +="<td>"+dataList[i].dept_type +"</td></tr>";
-                    }else{
-                        dataStr +="<td>---</td></tr>";
-                    }
+                    dataStr += `<tr><td>${dataList[i].id}</td>
+                    <td>${dataList[i].dept_code}</td>
+                    <td>${dataList[i].dept_name}</td>
+                    <td>${dataList[i].dept_type!=null && dataList[i].dept_type.length>0?dataList[i].dept_type:'---'}</td></tr>`;
                 }
                 $("#dataList").html(dataStr);
             }
