@@ -26,5 +26,6 @@
     <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="standard" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.2.3" level="project" />
+    <orderEntry type="library" name="pinyin4j-2.5.1" level="project" />
   </component>
 </module>
