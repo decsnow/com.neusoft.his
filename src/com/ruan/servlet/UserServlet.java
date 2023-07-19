@@ -49,7 +49,7 @@ public class UserServlet extends HttpServlet {
             }
             break;
             case "registerEntry":
-                request.setAttribute("deptlist", departmentMapper.selectAllDept());
+                request.setAttribute("deptlist", departmentMapper.selectAllDept(null));
                 //System.out.println(departmentMapper.selectAllDept());
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             case "register":
@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
             case "listUser":
             String id2 = request.getParameter("id");
             request.setAttribute("user", mapper.listEmployee(id2));
-            request.setAttribute("deptlist", departmentMapper.selectAllDept());
+            request.setAttribute("deptlist", departmentMapper.selectAllDept(null));
             request.getRequestDispatcher("userUpdate.jsp").forward(request, response);
             break;
             case "logout":
@@ -119,7 +119,7 @@ public class UserServlet extends HttpServlet {
             String realname2 = request.getParameter("realname");
             String deptment_id2 = request.getParameter("deptment_id");
             request.setAttribute("userlist", mapper.conditionQuery(realname2, deptment_id2));
-            request.setAttribute("deptlist", departmentMapper.selectAllDept());
+            request.setAttribute("deptlist", departmentMapper.selectAllDept(null));
             request.getRequestDispatcher("userList.jsp").forward(request, response);
             default:
                 throw new IllegalStateException("Unexpected value: " + action);
@@ -135,7 +135,7 @@ public class UserServlet extends HttpServlet {
     //拉取所有用户和部门信息
     public void queryListMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("userlist", mapper.listAll());
-        request.setAttribute("deptlist", departmentMapper.selectAllDept());
+        request.setAttribute("deptlist", departmentMapper.selectAllDept(null));
         request.getRequestDispatcher("userList.jsp").forward(request, response);
     }
 }

@@ -25,8 +25,9 @@ public class DepartmentServlet extends HttpServlet {
         String action = req.getParameter("action");
         switch (action){
         case "listDept":
+            String deptName = req.getParameter("deptName");
         // 查询所有科室,json格式返回
-            List<Department> list = mapper.selectAllDept();
+            List<Department> list = mapper.selectAllDept(deptName);
             //将科室集合数据转换成json字符串格式
             String json = objectMapper.writeValueAsString(list);
             //符json数据返回

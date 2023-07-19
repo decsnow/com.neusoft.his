@@ -7,6 +7,13 @@
     <link href="static/css/list.css" rel="stylesheet">
 </head>
 <body>
+<form class="form-inline" accept-charset="UTF-8" onsubmit="return false">
+    <div class="form-group">
+        <label for="deptName">科室</label>
+        <input type="text" class="form-control" name="deptName" id="deptName" placeholder="请输入科室名">
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="loadList()">搜索</button>
+</form>
 <table style="margin: 20px">
     <thead>
     <tr>
@@ -23,9 +30,14 @@
 <script>
     //页面加载的时候执行
     $(function (){
+        loadList();
+    })
+    function loadList(){
+        let deptName = $("#deptName").val();
         $.ajax({
             url:"/medical_war_exploded/department?action=listDept",
             type:"post",
+            data:{"deptName":deptName},
             success:function (data){
                 //拿到的是json字符串，要转换成json对象
                 let dataList = JSON.parse(data);
@@ -44,7 +56,7 @@
                 $("#dataList").html(dataStr);
             }
         })
-    })
+    }
 </script>
 </body>
 </html>
