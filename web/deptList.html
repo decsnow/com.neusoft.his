@@ -82,7 +82,7 @@
     function loadList(){
         let deptName = $("#deptName").val();
         $.ajax({
-            url:"/medical_war_exploded/department?action=listDept",
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/department?action=listDept",
             type:"post",
             data:{"deptName":deptName},
             success:function (data){
@@ -108,7 +108,7 @@
             return;
         }
         $.ajax({
-            url:"/medical_war_exploded/department",
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/department",
             type:"post",
             data:{"action":"delDept","deptId":id},
             success:function (data){
@@ -129,7 +129,7 @@
             return;
         }
         $.ajax({
-            url:"/medical_war_exploded/department",
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/department",
             type:"post",
             data:{"action":"addDept","deptName":deptName,"deptType":deptType},
             success:function (data){
@@ -154,7 +154,7 @@
             return;
         }
         $.ajax({
-            url:"/medical_war_exploded/department",
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/department",
             type:"post",
             data:{"action":"updateDept","deptId":id,"deptName":deptName,"deptType":deptType},
             success:function (data){
