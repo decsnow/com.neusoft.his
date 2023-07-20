@@ -508,7 +508,7 @@
                         <li>
                             <a href="#">
                                 <div class="small pull-right m-t-xs">9小时以后</div>
-                                <h4>可行性报告研究报上级批准 </h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+                                <h4>可行性报告研究报上级批准 </h4> 编写目的编写本项目进度报告的目的在于更好地控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
 
                                 <div class="small">已完成： 48%</div>
                                 <div class="progress progress-mini">
@@ -552,7 +552,7 @@
                         <li>
                             <a href="#">
                                 <div class="small pull-right m-t-xs">9小时以后</div>
-                                <h4>建设阶段 </h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+                                <h4>建设阶段 </h4> 编写目的编写本项目进度报告的目的在于更好地控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
 
                                 <div class="small">已完成： 48%</div>
                                 <div class="progress progress-mini">
@@ -563,7 +563,7 @@
                         <li>
                             <a href="#">
                                 <div class="small pull-right m-t-xs">9小时以后</div>
-                                <h4>获证开盘</h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+                                <h4>获证开盘</h4> 编写目的编写本项目进度报告的目的在于更好地控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
 
                                 <div class="small">已完成： 14%</div>
                                 <div class="progress progress-mini">
