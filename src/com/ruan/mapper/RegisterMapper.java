@@ -18,13 +18,11 @@ public class RegisterMapper extends BaseDao {
         this.conn = BaseDao.getConnection();
     }
     public List<Register> getRegisterList() throws SQLException {
-        String sql = "SELECT * FROM register where visit_state!=3 and visit_state!=4";
+        String sql = "SELECT * FROM register r left join prescription p on r.id = p.register_id " +
+                "where visit_state!=3 and visit_state!=4 and p.id is not null and drug_state='已缴费' " +
+                "group by r.id";
         //不使用CRUDUtil，使用BaseDao
         PreparedStatement ps = conn.prepareStatement(sql);
-        // 获取数据库连接
-        final Connection conn = BaseDao.getConnection();
-        // 参数赋值进行预编译
-        assert conn != null;
         ResultSet rs = ps.executeQuery();
         List<Register> list = new ArrayList<>();
         //循环为每个属性赋值
