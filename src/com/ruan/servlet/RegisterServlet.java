@@ -26,7 +26,7 @@ private ObjectMapper objectMapper = new ObjectMapper();
 switch (action){
     case "getRegisterList":
     // 获取挂号列表
-        List<Register> registers = null;
+        List<Register> registers;
         try {
             registers = RegisterMapper.getRegisterList();
         } catch (SQLException e) {
@@ -34,6 +34,17 @@ switch (action){
         }
         String json = objectMapper.writeValueAsString(registers);
         response.getWriter().print(json);
+        break;
+    case "getWithdrawRegisterList":
+        // 获取退药列表
+        List<Register> registers1;
+        try {
+            registers1 = RegisterMapper.getWithdrawRegisterList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        String json1 = objectMapper.writeValueAsString(registers1);
+        response.getWriter().print(json1);
         break;
     default:
         throw new IllegalStateException("Unexpected value: " + action);

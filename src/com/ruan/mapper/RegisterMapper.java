@@ -52,4 +52,39 @@ list.add(register);
         return list;
     }
 
+    public List<Register> getWithdrawRegisterList() throws SQLException {
+        String sql = "SELECT * FROM register r left join prescription p on r.id = p.register_id " +
+                "where visit_state!=3 and visit_state!=4 and p.id is not null and drug_state='已发药' " +
+                "group by r.id";
+        //不使用CRUDUtil，使用BaseDao
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        List<Register> list = new ArrayList<>();
+        //循环为每个属性赋值
+        while (rs.next()){
+            int id = rs.getInt("id");
+            String case_number = rs.getString("case_number");
+            String real_name = rs.getString("real_name");
+            String gender = rs.getString("gender");
+            String card_number = rs.getString("card_number");
+            java.util.Date birthday = rs.getDate("birthday");
+            int age = rs.getInt("age");
+            String age_type = rs.getString("age_type");
+            String home_address = rs.getString("home_address");
+            java.util.Date visit_date = rs.getDate("visit_date");
+            String noon = rs.getString("noon");
+            int deptment_id = rs.getInt("deptment_id");
+            int employee_id = rs.getInt("employee_id");
+            int regist_level_id = rs.getInt("regist_level_id");
+            int settle_category_id = rs.getInt("settle_category_id");
+            String is_book = rs.getString("is_book");
+            String regist_method = rs.getString("regist_method");
+            int visit_state = rs.getInt("visit_state");
+            Float regist_money = rs.getFloat("regist_money");
+            Register register = new Register(id,case_number,real_name,gender,card_number,birthday,age,age_type,home_address,visit_date,noon,deptment_id,employee_id,regist_level_id,settle_category_id,is_book,regist_method,visit_state,regist_money);
+            list.add(register);
+        }
+        return list;
+    }
+
 }

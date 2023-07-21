@@ -110,20 +110,20 @@
                         <li>
                             <a class="J_menuItem" href="deptList.html">科室管理</a>
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-file-archive-o"></i>
+                        <span class="nav-label">药房系统</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="unDev.html">Morris.js</a>
+                            <a class="J_menuItem" href="drugIssue.html">药房发药</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="unDev.html">Rickshaw</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="unDev.html">Peity</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="unDev.html">Sparkline</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="unDev.html">图表组合</a>
+                            <a class="J_menuItem" href="drugWithdraw.html">药房退药</a>
                         </li>
                     </ul>
                 </li>
