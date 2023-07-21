@@ -4,48 +4,49 @@ import java.util.Date;
 
 public class Register {
     private int id;
-    private String caseNumber;
-    private String realName;
-    private String Gender;
-    private String cardNumber;
+    private String case_number;
+    private String real_name;
+    private String gender;
+    private String card_number;
     private Date birthday;
     private int age;
-    private String ageType;
-    private String homeAddress;
-    private Date visitDate;
+    private String age_type;
+    private String home_address;
+    private Date visit_date;
     private String noon;
-    private int deptId;
-    private int employeeId;
-    private int registLevelId;
-    private int settleCategoryId;
-    private String isBook;
-    private String registMethod;
-    private int visitState;
-    private Float registMoney;
+    private int dept_id;
+    private int employee_id;
+    private int registLevel_id;
+    private int settleCategory_id;
+    private String is_book;
+    private String regist_method;
+    private int visit_state;
+    private Float regist_money;
+
 
     public Register() {
     }
 
-    public Register(int id, String caseNumber, String realName, String Gender, String cardNumber, Date birthday, int age, String ageType, String homeAddress, Date visitDate, String noon, int deptId, int employeeId, int registLevelId, int settleCategoryId, String isBook, String registMethod, int visitState, Float registMoney) {
+    public Register(int id, String case_number, String real_name, String gender, String card_number, Date birthday, int age, String age_type, String home_address, Date visit_date, String noon, int dept_id, int employee_id, int registLevel_id, int settleCategory_id, String is_book, String regist_method, int visit_state, Float regist_money) {
         this.id = id;
-        this.caseNumber = caseNumber;
-        this.realName = realName;
-        this.Gender = Gender;
-        this.cardNumber = cardNumber;
+        this.case_number = case_number;
+        this.real_name = real_name;
+        this.gender = gender;
+        this.card_number = card_number;
         this.birthday = birthday;
         this.age = age;
-        this.ageType = ageType;
-        this.homeAddress = homeAddress;
-        this.visitDate = visitDate;
+        this.age_type = age_type;
+        this.home_address = home_address;
+        this.visit_date = visit_date;
         this.noon = noon;
-        this.deptId = deptId;
-        this.employeeId = employeeId;
-        this.registLevelId = registLevelId;
-        this.settleCategoryId = settleCategoryId;
-        this.isBook = isBook;
-        this.registMethod = registMethod;
-        this.visitState = visitState;
-        this.registMoney = registMoney;
+        this.dept_id = dept_id;
+        this.employee_id = employee_id;
+        this.registLevel_id = registLevel_id;
+        this.settleCategory_id = settleCategory_id;
+        this.is_book = is_book;
+        this.regist_method = regist_method;
+        this.visit_state = visit_state;
+        this.regist_money = regist_money;
     }
 
     /**
@@ -66,66 +67,66 @@ public class Register {
 
     /**
      * 获取
-     * @return caseNumber
+     * @return case_number
      */
-    public String getCaseNumber() {
-        return caseNumber;
+    public String getCase_number() {
+        return case_number;
     }
 
     /**
      * 设置
-     * @param caseNumber
+     * @param case_number
      */
-    public void setCaseNumber(String caseNumber) {
-        this.caseNumber = caseNumber;
+    public void setCase_number(String case_number) {
+        this.case_number = case_number;
     }
 
     /**
      * 获取
-     * @return realName
+     * @return real_name
      */
-    public String getRealName() {
-        return realName;
+    public String getReal_name() {
+        return real_name;
     }
 
     /**
      * 设置
-     * @param realName
+     * @param real_name
      */
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setReal_name(String real_name) {
+        this.real_name = real_name;
     }
 
     /**
      * 获取
-     * @return Gender
+     * @return gender
      */
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     /**
      * 设置
-     * @param Gender
+     * @param gender
      */
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     /**
      * 获取
-     * @return cardNumber
+     * @return card_number
      */
-    public String getCardNumber() {
-        return cardNumber;
+    public String getCard_number() {
+        return card_number;
     }
 
     /**
      * 设置
-     * @param cardNumber
+     * @param card_number
      */
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCard_number(String card_number) {
+        this.card_number = card_number;
     }
 
     /**
@@ -162,50 +163,50 @@ public class Register {
 
     /**
      * 获取
-     * @return ageType
+     * @return age_type
      */
-    public String getAgeType() {
-        return ageType;
+    public String getAge_type() {
+        return age_type;
     }
 
     /**
      * 设置
-     * @param ageType
+     * @param age_type
      */
-    public void setAgeType(String ageType) {
-        this.ageType = ageType;
+    public void setAge_type(String age_type) {
+        this.age_type = age_type;
     }
 
     /**
      * 获取
-     * @return homeAddress
+     * @return home_address
      */
-    public String getHomeAddress() {
-        return homeAddress;
+    public String getHome_address() {
+        return home_address;
     }
 
     /**
      * 设置
-     * @param homeAddress
+     * @param home_address
      */
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
+    public void setHome_address(String home_address) {
+        this.home_address = home_address;
     }
 
     /**
      * 获取
-     * @return visitDate
+     * @return visit_date
      */
-    public Date getVisitDate() {
-        return visitDate;
+    public Date getVisit_date() {
+        return visit_date;
     }
 
     /**
      * 设置
-     * @param visitDate
+     * @param visit_date
      */
-    public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+    public void setVisit_date(Date visit_date) {
+        this.visit_date = visit_date;
     }
 
     /**
@@ -226,133 +227,133 @@ public class Register {
 
     /**
      * 获取
-     * @return deptId
+     * @return dept_id
      */
-    public int getDeptId() {
-        return deptId;
+    public int getDept_id() {
+        return dept_id;
     }
 
     /**
      * 设置
-     * @param deptId
+     * @param dept_id
      */
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
     }
 
     /**
      * 获取
-     * @return employeeId
+     * @return employee_id
      */
-    public int getEmployeeId() {
-        return employeeId;
+    public int getEmployee_id() {
+        return employee_id;
     }
 
     /**
      * 设置
-     * @param employeeId
+     * @param employee_id
      */
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
     }
 
     /**
      * 获取
-     * @return registLevelId
+     * @return registLevel_id
      */
-    public int getRegistLevelId() {
-        return registLevelId;
+    public int getRegistLevel_id() {
+        return registLevel_id;
     }
 
     /**
      * 设置
-     * @param registLevelId
+     * @param registLevel_id
      */
-    public void setRegistLevelId(int registLevelId) {
-        this.registLevelId = registLevelId;
+    public void setRegistLevel_id(int registLevel_id) {
+        this.registLevel_id = registLevel_id;
     }
 
     /**
      * 获取
-     * @return settleCategoryId
+     * @return settleCategory_id
      */
-    public int getSettleCategoryId() {
-        return settleCategoryId;
+    public int getSettleCategory_id() {
+        return settleCategory_id;
     }
 
     /**
      * 设置
-     * @param settleCategoryId
+     * @param settleCategory_id
      */
-    public void setSettleCategoryId(int settleCategoryId) {
-        this.settleCategoryId = settleCategoryId;
+    public void setSettleCategory_id(int settleCategory_id) {
+        this.settleCategory_id = settleCategory_id;
     }
 
     /**
      * 获取
-     * @return isBook
+     * @return is_book
      */
-    public String getIsBook() {
-        return isBook;
+    public String getIs_book() {
+        return is_book;
     }
 
     /**
      * 设置
-     * @param isBook
+     * @param is_book
      */
-    public void setIsBook(String isBook) {
-        this.isBook = isBook;
+    public void setIs_book(String is_book) {
+        this.is_book = is_book;
     }
 
     /**
      * 获取
-     * @return registMethod
+     * @return regist_method
      */
-    public String getRegistMethod() {
-        return registMethod;
+    public String getRegist_method() {
+        return regist_method;
     }
 
     /**
      * 设置
-     * @param registMethod
+     * @param regist_method
      */
-    public void setRegistMethod(String registMethod) {
-        this.registMethod = registMethod;
+    public void setRegist_method(String regist_method) {
+        this.regist_method = regist_method;
     }
 
     /**
      * 获取
-     * @return visitState
+     * @return visit_state
      */
-    public int getVisitState() {
-        return visitState;
+    public int getVisit_state() {
+        return visit_state;
     }
 
     /**
      * 设置
-     * @param visitState
+     * @param visit_state
      */
-    public void setVisitState(int visitState) {
-        this.visitState = visitState;
+    public void setVisit_state(int visit_state) {
+        this.visit_state = visit_state;
     }
 
     /**
      * 获取
-     * @return registMoney
+     * @return regist_money
      */
-    public Float getRegistMoney() {
-        return registMoney;
+    public Float getRegist_money() {
+        return regist_money;
     }
 
     /**
      * 设置
-     * @param registMoney
+     * @param regist_money
      */
-    public void setRegistMoney(Float registMoney) {
-        this.registMoney = registMoney;
+    public void setRegist_money(Float regist_money) {
+        this.regist_money = regist_money;
     }
 
     public String toString() {
-        return "register{id = " + id + ", caseNumber = " + caseNumber + ", realName = " + realName + ", Gender = " + Gender + ", cardNumber = " + cardNumber + ", birthday = " + birthday + ", age = " + age + ", ageType = " + ageType + ", homeAddress = " + homeAddress + ", visitDate = " + visitDate + ", noon = " + noon + ", deptId = " + deptId + ", employeeId = " + employeeId + ", registLevelId = " + registLevelId + ", settleCategoryId = " + settleCategoryId + ", isBook = " + isBook + ", registMethod = " + registMethod + ", visitState = " + visitState + ", registMoney = " + registMoney + "}";
+        return "Register{id = " + id + ", case_number = " + case_number + ", real_name = " + real_name + ", gender = " + gender + ", card_number = " + card_number + ", birthday = " + birthday + ", age = " + age + ", age_type = " + age_type + ", home_address = " + home_address + ", visit_date = " + visit_date + ", noon = " + noon + ", dept_id = " + dept_id + ", employee_id = " + employee_id + ", registLevel_id = " + registLevel_id + ", settleCategory_id = " + settleCategory_id + ", is_book = " + is_book + ", regist_method = " + regist_method + ", visit_state = " + visit_state + ", regist_money = " + regist_money + "}";
     }
 }
