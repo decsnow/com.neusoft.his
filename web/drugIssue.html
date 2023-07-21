@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>药房发药</title>
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <link href="static/css/list.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="static/css/animate.min.css" rel="stylesheet">
+    <link href="static/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <script src="static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>药房发药</h1>
+<h5>待发药</h5>
+<table style="margin: 20px">
+    <thead>
+    <tr>
+        <td>编号</td>
+        <td>患者姓名</td>
+        <td>患者病历号</td>
+        <td>患者年龄</td>
+        <td>患者性别</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody id="registerList">
+
+    </tbody>
+</table>
+<h5>药品列表</h5>
+<table style="margin: 20px">
+    <thead>
+    <tr>
+        <td>编号</td>
+        <td>药品编码</td>
+        <td>药品名称</td>
+        <td>药品规格</td>
+        <td>包装单位</td>
+        <td>生产厂家</td>
+        <td>药品单价</td>
+        <td>药品数量</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody id="DrugList">
+
+    </tbody>
+</table>
+<script>
+    //页面加载的时候执行
+    $(function (){
+        loadRegisterList();
+    })
+    function loadRegisterList(){
+        $.ajax({
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/register",
+            type:"get",
+            data:{
+                "action":"getRegisterList",
+            },
+            success:function (data){
+                //拿到的是json字符串，要转换成json对象
+                let dataList = JSON.parse(data);
+                //jquery模版语法
+                let dataStr = ``;
+                for (let i = 0; i < dataList.length; i++) {
+                    dataStr += `<tr><td><br>${dataList[i].id}<br><br></td>
+                    <td>${dataList[i].real_name}</td>
+                    <td>${dataList[i].case_number}</td>
+                    <td>${dataList[i].age}</td>
+                    <td>${dataList[i].gender}</td>
+                    <td><button class="btn btn-primary"
+                    onclick="loadDrugList(${dataList[i].id})">显示药品</button></td></tr>`;
+                }
+                $("#registerList").html(dataStr);
+            }
+        })
+    }
+    function loadDrugList(id){
+        $.ajax({
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/drug",
+            type:"get",
+            data:{
+                "action":"selectIssueDrug",
+                "register_id": id
+            },
+            success:function (data){
+                //拿到的是json字符串，要转换成json对象
+                let dataList = JSON.parse(data);
+                //jquery模版语法
+                let dataStr = ``;
+                for (let i = 0; i < dataList.length; i++) {
+                    dataStr += `<tr><td><br>${i+1}<br><br></td>
+                    <td>${dataList[i].drugCode}</td>
+                    <td>${dataList[i].drugName}</td>
+                    <td>${dataList[i].drugFormat}</td>
+                    <td>${dataList[i].drugUnit}</td>
+                    <td>${dataList[i].manufacturer}</td>
+                    <td>${dataList[i].drugPrice}</td>
+                    <td>${dataList[i].drugNum}</td>
+                    <td><button class="btn btn-primary"
+                    onclick="updateDrugState(${id},${dataList[i].drugId})">发药</button></td></tr>`;
+                }
+                $("#DrugList").html(dataStr);
+            }
+        })
+    }
+    function updateDrugState(register_id,drug_id){
+        $.ajax({
+            url:document.URL.slice(0,document.URL.lastIndexOf('/'))+"/drug",
+            type:"post",
+            data:{
+                "action":"updateDrugState",
+                "register_id": register_id,
+                "drug_id": drug_id
+            },
+            success:function (data){
+                if (data==="true"){
+                    alert("发药成功");
+                    loadDrugList(register_id);
+                }else {
+                    alert("发药失败");
+                    loadDrugList(register_id);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>
